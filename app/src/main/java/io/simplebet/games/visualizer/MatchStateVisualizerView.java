@@ -54,11 +54,7 @@ public class MatchStateVisualizerView extends LinearLayout {
     }
 
     public void setMatchConfiguration(MatchVisualizerConfiguration configuration) {
-        webView.loadUrl("https://matchviz.staging.simplebet.io/?" +
-                "dev_features=auth_bypass" +
-                "&proxy=thawing-eyrie-36823.herokuapp.com/proxy/match_visualizer" +
-                "&route=/visualizer/nfl/61ceac92-6b2b-46b6-95e1-1f6f0bcad89d" +
-                "&" +  configuration.toUrlParams());
+        webView.loadUrl("https://matchviz.staging.simplebet.io/?" + configuration.toUrlParams());
     }
 
     public void refresh(){
