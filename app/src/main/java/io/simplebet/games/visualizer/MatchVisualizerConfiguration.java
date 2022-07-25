@@ -54,8 +54,7 @@ public class MatchVisualizerConfiguration {
     }
 
     public String toUrlParams() {
-        return "key=" + apiKey
-                + "&away=" + league
+        return "api_key=" + apiKey
                 + "&teams=" + teams.get(0) + "," + teams.get(1)
                 + "&start_time=" + startTime;
     }
