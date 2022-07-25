@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         val matchVisualizerConfiguration = MatchVisualizerConfiguration()
         matchVisualizerConfiguration
             .setAPIKey("YOUR_API_KEY")
-            .setTeams(listOf("NYY", "BOS"))
+            .setTeams(listOf(Teams.Nfl.getTeamIdByAbbreviation(thereModel.abbreviation), Teams.nfl.Boston))
             .setLeague("MLB")
             .setStartTime(SimpleDateFormat.getDateTimeInstance().format(Date()));
 
