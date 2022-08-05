@@ -2,6 +2,10 @@ package io.simplebet.games.visualizer;
 
 public class Teams {
     static class Nfl {
+
+        String getTeamIdByAbbreviation(String abbreviation){
+            return null;
+        }
         static class Abbrv {
 
             static final public String GB = "647ca14b-e4e1-4e24-a703-fde16e8ea73f";
@@ -137,6 +141,11 @@ public class Teams {
     }
 
     static class Cfb {
+
+        String getTeamIdByAbbreviation(String abbreviation){
+            return null;
+        }
+
         static class Abbrv {
             static final public String INCAR = "b7fbf431-58e5-4983-9019-f791f5f36874";
 
@@ -1189,3 +1198,4 @@ public class Teams {
         }
     }
 }
+
