@@ -1,11 +1,27 @@
 package io.simplebet.games.visualizer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Teams {
+
+    public interface TeamNotFoundHandler {
+        String onTeamNotFound(String teamAbbreviation);
+    }
+
     static class Nfl {
 
-        String getTeamIdByAbbreviation(String abbreviation){
-            return null;
+        String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
+            String teamId = null;
+            if (abbreviation != null) {
+                teamId = Abbrv.map.get(abbreviation.toUpperCase());
+            }
+            if (teamId == null && handler != null) {
+                teamId = handler.onTeamNotFound(abbreviation);
+            }
+            return teamId;
         }
+
         static class Abbrv {
 
             static final public String GB = "647ca14b-e4e1-4e24-a703-fde16e8ea73f";
@@ -71,6 +87,42 @@ public class Teams {
             static final public String DEN = "5b800a67-a4c6-4b13-a697-a8e7b6b1cbfb";
 
             static final public String LAC = "80a0cc14-7bdb-44c0-b77b-3fe2dd69988c";
+
+            static final private Map<String, String> map = new HashMap<String, String>() {{
+                put("GB", GB);
+                put("DET", DET);
+                put("LV", LV);
+                put("WAS", WAS);
+                put("MIA", MIA);
+                put("NE", NE);
+                put("HOU", HOU);
+                put("ARI", ARI);
+                put("CLE", CLE);
+                put("IND", IND);
+                put("TEN", TEN);
+                put("BUF", BUF);
+                put("NO", NO);
+                put("KC", KC);
+                put("PHI", PHI);
+                put("CHI", CHI);
+                put("BAL", BAL);
+                put("SEA", SEA);
+                put("TB", TB);
+                put("DAL", DAL);
+                put("NYJ", NYJ);
+                put("NYG", NYG);
+                put("PIT", PIT);
+                put("ATL", ATL);
+                put("JAX", JAX);
+                put("CAR", CAR);
+                put("MIN", MIN);
+                put("CIN", CIN);
+                put("LAR", LAR);
+                put("SF", SF);
+                put("DEN", DEN);
+                put("LAC", LAC);
+            }};
+
         }
 
         static class Name {
@@ -142,8 +194,15 @@ public class Teams {
 
     static class Cfb {
 
-        String getTeamIdByAbbreviation(String abbreviation){
-            return null;
+        String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
+            String teamId = null;
+            if (abbreviation != null) {
+                teamId = Cfb.Abbrv.map.get(abbreviation.toUpperCase());
+            }
+            if (teamId == null && handler != null) {
+                teamId = handler.onTeamNotFound(abbreviation);
+            }
+            return teamId;
         }
 
         static class Abbrv {
@@ -668,6 +727,271 @@ public class Teams {
             static final public String NCAR = "d448a7f1-32a6-4e5a-b1d4-864478e785d3";
 
             static final public String STBR = "d3fd8db5-975b-4d47-8f44-0ca07e798ba0";
+
+            static final private Map<String, String> map = new HashMap<String, String>() {{
+                put("INCAR", INCAR);
+                put("ARZ", ARZ);
+                put("CMICH", CMICH);
+                put("LAMAR", LAMAR);
+                put("SCARST", SCARST);
+                put("ALF", ALF);
+                put("AKRON", AKRON);
+                put("TENST", TENST);
+                put("WYOM", WYOM);
+                put("GAST", GAST);
+                put("CARK", CARK);
+                put("COLG", COLG);
+                put("TCU", TCU);
+                put("CHAT", CHAT);
+                put("PRNCE", PRNCE);
+                put("BUCK", BUCK);
+                put("RICH", RICH);
+                put("TX", TX);
+                put("WEBST", WEBST);
+                put("MAINE", MAINE);
+                put("UCLA", UCLA);
+                put("BAYL", BAYL);
+                put("GAS", GAS);
+                put("KENEST", KENEST);
+                put("NILL", NILL);
+                put("SMU", SMU);
+                put("MARY", MARY);
+                put("UNLV", UNLV);
+                put("WM", WM);
+                put("WASHST", WASHST);
+                put("HOWRD", HOWRD);
+                put("OREGST", OREGST);
+                put("UTEP", UTEP);
+                put("IOWAST", IOWAST);
+                put("ILL", ILL);
+                put("UAB", UAB);
+                put("SJST", SJST);
+                put("FURMAN", FURMAN);
+                put("OKST", OKST);
+                put("FLINT", FLINT);
+                put("STFPA", STFPA);
+                put("IDHST", IDHST);
+                put("SAVST", SAVST);
+                put("ARK", ARK);
+                put("NOPA", NOPA);
+                put("WOFF", WOFF);
+                put("SFAUS", SFAUS);
+                put("IDAHO", IDAHO);
+                put("YNGST", YNGST);
+                put("NCOL", NCOL);
+                put("ELON", ELON);
+                put("NEAST", NEAST);
+                put("FL", FL);
+                put("MORGST", MORGST);
+                put("STMN", STMN);
+                put("DXST", DXST);
+                put("SDKST", SDKST);
+                put("LBB", LBB);
+                put("MIA", MIA);
+                put("SACST", SACST);
+                put("UTAH", UTAH);
+                put("RUTGER", RUTGER);
+                put("NARZ", NARZ);
+                put("NTX", NTX);
+                put("UTSA", UTSA);
+                put("VILL", VILL);
+                put("MARSH", MARSH);
+                put("MONT", MONT);
+                put("SOUMIS", SOUMIS);
+                put("BALLST", BALLST);
+                put("SAMF", SAMF);
+                put("TEMPL", TEMPL);
+                put("MINNST", MINNST);
+                put("UTAHST", UTAHST);
+                put("HOU", HOU);
+                put("TMRT", TMRT);
+                put("RI", RI);
+                put("CIN", CIN);
+                put("FAIRS", FAIRS);
+                put("BOISE", BOISE);
+                put("CLMSN", CLMSN);
+                put("ORE", ORE);
+                put("SC", SC);
+                put("SELOU", SELOU);
+                put("UMASS", UMASS);
+                put("NAVY", NAVY);
+                put("WILM", WILM);
+                put("MSRST", MSRST);
+                put("MCNST", MCNST);
+                put("OHIO", OHIO);
+                put("MISSR", MISSR);
+                put("HOFST", HOFST);
+                put("NMXST", NMXST);
+                put("TOWS", TOWS);
+                put("EWASH", EWASH);
+                put("GRMBST", GRMBST);
+                put("ARPB", ARPB);
+                put("DUQ", DUQ);
+                put("LOULAF", LOULAF);
+                put("WNM", WNM);
+                put("CAMP", CAMP);
+                put("NEVADA", NEVADA);
+                put("HAMP", HAMP);
+                put("COL", COL);
+                put("SUTAH", SUTAH);
+                put("WCAR", WCAR);
+                put("MISS", MISS);
+                put("ALA", ALA);
+                put("WAG", WAG);
+                put("FLST", FLST);
+                put("LIUB", LIUB);
+                put("GTECH", GTECH);
+                put("EILL", EILL);
+                put("HDSM", HDSM);
+                put("MIAOH", MIAOH);
+                put("MONM", MONM);
+                put("CATA", CATA);
+                put("IOWA", IOWA);
+                put("WVIR", WVIR);
+                put("UCF", UCF);
+                put("ARMY", ARMY);
+                put("LSU", LSU);
+                put("NAL", NAL);
+                put("HAWAII", HAWAII);
+                put("TENTCH", TENTCH);
+                put("EKENT", EKENT);
+                put("TENN", TENN);
+                put("ENM", ENM);
+                put("BRYANT", BRYANT);
+                put("NICHLS", NICHLS);
+                put("WISC", WISC);
+                put("KAN", KAN);
+                put("TXST", TXST);
+                put("NCAT", NCAT);
+                put("DRAKE", DRAKE);
+                put("TULANE", TULANE);
+                put("HOUBAP", HOUBAP);
+                put("OLD", OLD);
+                put("SDAK", SDAK);
+                put("MSVLST", MSVLST);
+                put("WKENT", WKENT);
+                put("NDAK", NDAK);
+                put("NWOST", NWOST);
+                put("WAKE", WAKE);
+                put("CAH", CAH);
+                put("DELST", DELST);
+                put("MERC", MERC);
+                put("TULSA", TULSA);
+                put("NEBR", NEBR);
+                put("PENNST", PENNST);
+                put("MTNST", MTNST);
+                put("FORDM", FORDM);
+                put("VAMIL", VAMIL);
+                put("JACKST", JACKST);
+                put("WMICH", WMICH);
+                put("APPLST", APPLST);
+                put("ARZST", ARZST);
+                put("SILL", SILL);
+                put("MICH", MICH);
+                put("NIOWA", NIOWA);
+                put("PORTST", PORTST);
+                put("NW", NW);
+                put("LEHI", LEHI);
+                put("ND", ND);
+                put("WASH", WASH);
+                put("ROBMS", ROBMS);
+                put("NORFST", NORFST);
+                put("WILL", WILL);
+                put("NMX", NMX);
+                put("NMH", NMH);
+                put("CHDE", CHDE);
+                put("BCOOK", BCOOK);
+                put("JAXST", JAXST);
+                put("SOUTH", SOUTH);
+                put("OKL", OKL);
+                put("GARDWB", GARDWB);
+                put("VTECH", VTECH);
+                put("TOLEDO", TOLEDO);
+                put("FREST", FREST);
+                put("SEMST", SEMST);
+                put("AUSP", AUSP);
+                put("NCST", NCST);
+                put("MST", MST);
+                put("NWST", NWST);
+                put("TXS", TXS);
+                put("GA", GA);
+                put("YALE", YALE);
+                put("SRU", SRU);
+                put("RICE", RICE);
+                put("ECAR", ECAR);
+                put("SDST", SDST);
+                put("ETNST", ETNST);
+                put("USC", USC);
+                put("LAMON", LAMON);
+                put("CHARLT", CHARLT);
+                put("DUKE", DUKE);
+                put("OBB", OBB);
+                put("TXAMC", TXAMC);
+                put("BOSCOL", BOSCOL);
+                put("DEL", DEL);
+                put("TARL", TARL);
+                put("ARMON", ARMON);
+                put("VAND", VAND);
+                put("BYU", BYU);
+                put("ABCHR", ABCHR);
+                put("LIBRTY", LIBRTY);
+                put("JMAD", JMAD);
+                put("LAFAY", LAFAY);
+                put("SFL", SFL);
+                put("MSPST", MSPST);
+                put("IND", IND);
+                put("VIR", VIR);
+                put("PITT", PITT);
+                put("PRESB", PRESB);
+                put("CALPOL", CALPOL);
+                put("INDST", INDST);
+                put("MURST", MURST);
+                put("CHSOU", CHSOU);
+                put("TROY", TROY);
+                put("AUBRN", AUBRN);
+                put("ALBNY", ALBNY);
+                put("MPHS", MPHS);
+                put("CENCON", CENCON);
+                put("COAST", COAST);
+                put("ILLST", ILLST);
+                put("ALAST", ALAST);
+                put("SMHO", SMHO);
+                put("FLATL", FLATL);
+                put("KENTST", KENTST);
+                put("NDKST", NDKST);
+                put("COLST", COLST);
+                put("OHIOST", OHIOST);
+                put("BOWLGR", BOWLGR);
+                put("LOU", LOU);
+                put("AIRF", AIRF);
+                put("NCW", NCW);
+                put("PVAM", PVAM);
+                put("SYRA", SYRA);
+                put("EMICH", EMICH);
+                put("LOUTCH", LOUTCH);
+                put("SALA", SALA);
+                put("ALAAM", ALAAM);
+                put("HOLY", HOLY);
+                put("UCDV", UCDV);
+                put("ALCST", ALCST);
+                put("TXTECH", TXTECH);
+                put("CITA", CITA);
+                put("MONST", MONST);
+                put("NHAMP", NHAMP);
+                put("UK", UK);
+                put("TXAM", TXAM);
+                put("PUR", PUR);
+                put("FLAM", FLAM);
+                put("BUF", BUF);
+                put("NCC", NCC);
+                put("ARKST", ARKST);
+                put("KANST", KANST);
+                put("STAN", STAN);
+                put("UCONN", UCONN);
+                put("NCAR", NCAR);
+                put("STBR", STBR);
+            }};
+
 
         }
 

@@ -49,7 +49,7 @@ public class MatchStateVisualizerView extends LinearLayout {
     }
 
     public void setMatchConfiguration(MatchVisualizerConfiguration configuration) {
-        webView.loadUrl("https://matchviz.staging.simplebet.io/?" + configuration.toUrlParams());
+        webView.loadUrl(configuration.toUrl());
     }
 
     public void refresh() {

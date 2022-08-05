@@ -21,6 +21,7 @@ public class MatchVisualizerConfiguration {
 
     /**
      * see {@link Environment}
+     *
      * @param environment
      * @return
      */
@@ -54,10 +55,38 @@ public class MatchVisualizerConfiguration {
         return this;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getEnvironment() {
+        return environment;
+    }
+
     public String toUrlParams() {
+        String teams = "";
+        if (!this.teams.isEmpty()) {
+            teams = "teams=" + this.teams.get(0) + ',' + this.teams.get(1);
+        }
         return "api_key=" + apiKey
-                + "&teams=" + teams.get(0) + "," + teams.get(1)
+                + "&teams=" + teams
                 + "&start_time=" + startTime;
     }
 
+    public String toUrl() {
+        String url;
+        url = "https://matchviz" + environment + ".simplebet.io/";
+        if (environment.equals(Environment.DEV)) {
+            url = "http://10.0.2.2:8080/";
+        }
+        return url + "?" + toUrlParams();
+    }
+
+    public String getAPIKey() {
+        return apiKey;
+    }
 }
