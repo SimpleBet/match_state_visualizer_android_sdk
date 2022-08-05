@@ -11,7 +11,7 @@ public class Teams {
 
     static class Nfl {
 
-        String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
+        public static String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
             String teamId = null;
             if (abbreviation != null) {
                 teamId = Abbrv.map.get(abbreviation.toUpperCase());
@@ -194,7 +194,7 @@ public class Teams {
 
     static class Cfb {
 
-        String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
+        public static String getTeamIdByAbbreviation(String abbreviation, TeamNotFoundHandler handler) {
             String teamId = null;
             if (abbreviation != null) {
                 teamId = Cfb.Abbrv.map.get(abbreviation.toUpperCase());
