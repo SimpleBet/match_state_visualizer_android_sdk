@@ -4,24 +4,30 @@ import java.util.List;
 
 public class MatchVisualizerConfiguration {
 
-    public static final String LEAGUE_NFL = "NFL";
-
-    public static final String LEAGUE_CFB = "CFB";
     private int width;
 
     private int height;
 
+    private String environment = Environment.PROD;
+
     // API Key provided by SimpleBet
     private String apiKey;
-
-    // Either NFL  | CFB
-    private String league;
 
     // The away and home teams abbreviations
     private List<String> teams;
 
     // The UTC Start time of the match
     private String startTime;
+
+    /**
+     * see {@link Environment}
+     * @param environment
+     * @return
+     */
+    MatchVisualizerConfiguration setEnvironment(String environment) {
+        this.environment = environment;
+        return this;
+    }
 
     MatchVisualizerConfiguration setWidth(int width) {
         this.width = width;
@@ -30,11 +36,6 @@ public class MatchVisualizerConfiguration {
 
     MatchVisualizerConfiguration setHeight(int height) {
         this.height = height;
-        return this;
-    }
-
-    MatchVisualizerConfiguration setLeague(String league) {
-        this.league = league;
         return this;
     }
 
@@ -54,8 +55,7 @@ public class MatchVisualizerConfiguration {
     }
 
     public String toUrlParams() {
-        return "key=" + apiKey
-                + "&away=" + league
+        return "api_key=" + apiKey
                 + "&teams=" + teams.get(0) + "," + teams.get(1)
                 + "&start_time=" + startTime;
     }

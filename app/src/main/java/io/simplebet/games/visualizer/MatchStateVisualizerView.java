@@ -2,13 +2,14 @@ package io.simplebet.games.visualizer;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
@@ -43,21 +44,15 @@ public class MatchStateVisualizerView extends LinearLayout {
     }
 
     private void sendEvent(String event, Map<String, String> params) {
-        StringBuilder paramsAsJson = new StringBuilder("{");
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String k = entry.getKey();
-            String v = entry.getValue();
-            paramsAsJson.append("'").append(k).append("'").append(v).append("'");
-        }
-        paramsAsJson.append("}");
-        webView.evaluateJavascript("postMessage('{'analytics':{'event':'" + event + "', 'params':" + paramsAsJson + "}}'", null);
+        JSONObject paramsAsJson = new JSONObject(params);
+        webView.evaluateJavascript("postMessage('{'analytics':{'event':'" + event + "', 'params':" + paramsAsJson.toString() + "}}'", null);
     }
 
     public void setMatchConfiguration(MatchVisualizerConfiguration configuration) {
         webView.loadUrl("https://matchviz.staging.simplebet.io/?" + configuration.toUrlParams());
     }
 
-    public void refresh(){
+    public void refresh() {
         webView.reload();
     }
 
@@ -75,8 +70,7 @@ public class MatchStateVisualizerView extends LinearLayout {
                 analyticsSender);
     }
 
-
-    //    @Override
+//    @Override
 //    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //        if( MeasureSpec.EXACTLY == MeasureSpec.getMode(heightMeasureSpec) ){
 //            setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(widthMeasureSpec));

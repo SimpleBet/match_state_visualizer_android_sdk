@@ -13,14 +13,12 @@ class MainActivity : AppCompatActivity() {
 
         val matchVisualizerConfiguration = MatchVisualizerConfiguration()
         matchVisualizerConfiguration
-            .setAPIKey("YOUR_API_KEY")
-            .setTeams(listOf("NYY", "BOS"))
-            .setLeague("MLB")
-            .setStartTime(SimpleDateFormat.getDateTimeInstance().format(Date()));
+            .setEnvironment(Environment.PROD)
+            .setAPIKey("API_KEY")
+            .setTeams(listOf(Teams.Cfb.Abbrv.AUBRN, Teams.Cfb.Abbrv.PENNST))
+            .setStartTime(SimpleDateFormat.getDateTimeInstance().format(Date()))
 
         val matchVisualizer = findViewById<MatchStateVisualizerView>(R.id.visualizer)
         matchVisualizer.setMatchConfiguration(matchVisualizerConfiguration)
-
-        MatchStateVisualizer.sendAnalytics("play", HashMap<String, String>())
     }
 }
